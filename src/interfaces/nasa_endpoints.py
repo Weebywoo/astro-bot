@@ -3,6 +3,7 @@ import os
 import requests
 
 from src.config import NASA_API_URLS
+from src.log import log, Severity
 
 
 class NasaEndpoints:
@@ -24,12 +25,12 @@ class NasaEndpoints:
         try:
             response = requests.request(method=method, url=url, params=params)
 
-            print('Requests left:', response.headers['X-RateLimit-Remaining'])
+            log(Severity.INFO, 'Requests left: ' + response.headers['X-RateLimit-Remaining'])
 
             return response.json()
 
         except Exception as exception:
-            print(exception)
+            log(Severity.ERROR, str(exception))
 
             return None
 
