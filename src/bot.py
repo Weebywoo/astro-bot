@@ -20,19 +20,19 @@ class Bot(commands.Bot):
         loaded_cogs = {
             cog_name: cog_cls.description for cog_name, cog_cls in self.cogs.items()
         }
-        log(Severity.INFO, f"Cogs loaded: {json.dumps(loaded_cogs, indent=2)}")
+        log(Severity.INFO, f'Cogs loaded: {json.dumps(loaded_cogs, indent=2)}')
 
         healthcheck_result = NasaEndpoints.do_healthcheck()
 
         if list(healthcheck_result.values()).count(True) >= 1:
             # Add pretty printing of available Nasa endpoints and response times
-            log(Severity.INFO, "NASA endpoints up and running!")
+            log(Severity.INFO, 'NASA endpoints up and running!')
 
             for name, status in healthcheck_result.items():
                 log(Severity.INFO, f'{name.ljust(7)}: {str(status).rjust(1)}')
 
         else:
-            log(Severity.ERROR, "Database unreachable. Exiting...")
+            log(Severity.ERROR, 'Database unreachable. Exiting...')
             exit()
 
     async def on_ready(self) -> None:

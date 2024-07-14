@@ -14,8 +14,9 @@ async def main():
         NasaApiCommands,
     ]
 
-    async with Bot(command_prefix=">", intents=intents, custom_commands=commands) as bot:
+    async with Bot(command_prefix='>', intents=intents, custom_commands=commands) as bot:
         await bot.start(os.environ.get('DISCORD_TOKEN'))
 
 
-asyncio.run(main())
+if __name__ == '__main__':
+    asyncio.run(main())
