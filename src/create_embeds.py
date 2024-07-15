@@ -7,7 +7,8 @@ def create_apod_embed(apod: dict[str, str]) -> Embed:
         description=apod['explanation'],
     )
 
-    if (author := apod['copyright']) is not None:
+    if 'copyright' in apod:
+        author: str = apod['copyright']
         embed.set_author(name=author)
         embed.set_footer(text=apod['copyright'])
 

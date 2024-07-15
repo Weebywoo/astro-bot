@@ -7,6 +7,8 @@ from src.log import log, Severity
 
 
 class NasaEndpoints:
+    NASA_API_KEY: str = os.environ.get('NASA_API_KEY')
+
     @classmethod
     def do_healthcheck(cls) -> dict[str, bool]:
         endpoints: dict[str, callable] = {
@@ -37,6 +39,6 @@ class NasaEndpoints:
 
     @classmethod
     def get_apod(cls) -> dict[str, str] | None:
-        response = cls.do_request('GET', NASA_API_URLS['APOD'], params={'api_key': os.environ.get('NASA_API_KEY')})
+        response: dict[str, str] = cls.do_request('GET', NASA_API_URLS['APOD'], params={'api_key': cls.NASA_API_KEY})
 
         return response
