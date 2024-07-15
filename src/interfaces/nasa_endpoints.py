@@ -26,6 +26,7 @@ class NasaEndpoints:
             response = requests.request(method=method, url=url, params=params)
 
             log(Severity.INFO, 'Requests left: ' + response.headers['X-RateLimit-Remaining'])
+            log(Severity.INFO, response.json())
 
             return response.json()
 

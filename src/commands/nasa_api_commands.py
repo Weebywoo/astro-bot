@@ -11,10 +11,6 @@ class NasaApiCommands(commands.Cog):
     def __init__(self, bot: Bot):
         self.bot = bot
 
-    @commands.command(name='ping')
-    async def ping(self, context: commands.Context):
-        await context.channel.send('pong!')
-
     @commands.command(name='apod')
     async def apod(self, context: commands.Context):
         await context.channel.send(embed=create_apod_embed(NasaEndpoints.get_apod()))
