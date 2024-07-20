@@ -1,9 +1,8 @@
 import asyncio
-import os
 
 import discord
 
-from src.bot import Bot
+from src import Bot, config
 from src.commands import NasaApiCommands
 
 
@@ -15,7 +14,7 @@ async def main():
     ]
 
     async with Bot(command_prefix='>', intents=intents, custom_commands=commands) as bot:
-        await bot.start(os.environ.get('DISCORD_TOKEN'))
+        await bot.start(config.discord_token)
 
 
 if __name__ == '__main__':
