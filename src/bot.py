@@ -1,10 +1,12 @@
 import json
 
 import discord
+import requests
 from discord.ext import commands
+from requests import Response
 
-from src.interfaces import NasaEndpoints
-from src.log import Severity, log
+from .interfaces import NasaEndpoints
+from .log import Severity, log
 
 
 class Bot(commands.Bot):
