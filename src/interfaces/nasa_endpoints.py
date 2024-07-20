@@ -2,12 +2,13 @@ import os
 
 import requests
 
-from src.config import NASA_API_URLS
+from src import config
+from src.config import nasa_api_urls
 from src.log import log, Severity
 
 
 class NasaEndpoints:
-    NASA_API_KEY: str = os.environ.get('NASA_API_KEY')
+    NASA_API_KEY: str = config.nasa_token
 
     @classmethod
     def do_healthcheck(cls) -> dict[str, bool]:
@@ -39,6 +40,6 @@ class NasaEndpoints:
 
     @classmethod
     def get_apod(cls) -> dict[str, str] | None:
-        response: dict[str, str] = cls.do_request('GET', NASA_API_URLS['APOD'], params={'api_key': cls.NASA_API_KEY})
+        response: dict[str, str] = cls.do_request('GET', nasa_api_urls['APOD'], params={'api_key': cls.NASA_API_KEY})
 
         return response
