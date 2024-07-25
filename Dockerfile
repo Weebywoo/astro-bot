@@ -11,4 +11,4 @@ COPY . .
 RUN python -m pip install -r ./requirements.txt
 
 # Run the application.
-CMD python main.py
+ENTRYPOINT ["python", "main.py"]
