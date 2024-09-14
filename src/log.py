@@ -1,14 +1,6 @@
 import datetime
-from enum import Enum
+from typing import Literal
 
 
-class Severity(Enum):
-    INFO: str = 'INFO'
-    ERROR: str = 'ERROR'
-
-
-def log(severity: Severity, message: str) -> None:
-    timestamp: str = f'[{datetime.datetime.now()}]'
-    severity: str = f'[{severity.value}]'
-
-    print(timestamp, severity, message)
+def log(severity: Literal["info", "error"], message: str) -> None:
+    print(f"[{datetime.datetime.now()}]", f"[{severity}]", message)
