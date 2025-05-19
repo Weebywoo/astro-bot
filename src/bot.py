@@ -1,10 +1,10 @@
 from typing import Type
 
-import discord
+from discord import Message
 from discord.ext import commands
-from discord.ext.commands import Cog
+from discord.ext.commands import Cog, Context, errors
 
-from src.log import log
+from src.auxiliary import log
 
 
 class Bot(commands.Bot):
@@ -22,7 +22,7 @@ class Bot(commands.Bot):
     async def on_ready(self) -> None:
         log("info", f"Logged in as '{self.user}'")
 
-    async def on_message(self, message: discord.Message) -> None:
+    async def on_message(self, message: Message, /) -> None:
         context = await self.get_context(message)
 
         if context.valid:
@@ -33,3 +33,6 @@ class Bot(commands.Bot):
                 )
 
                 await self.process_commands(message)
+
+    async def on_command_error(self, context: Context, exception: errors.CommandError) -> None:
+        log("error", str(exception))
