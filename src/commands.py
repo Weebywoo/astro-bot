@@ -16,6 +16,9 @@ class NasaApiCommands(Cog):
     @command(name="apod")
     async def astronomical_picture_of_the_day(self, context: Context):
         apod: dict = do_request(NASA_API_URLS["apod"])
+
+        print(apod)
+
         embed: Embed = create_apod_embed(apod)
 
         await context.reply(embed=embed)
